@@ -17,9 +17,10 @@ class tractis_identity
     var $notification_callback;
     var $public_verification;
     var $image_button;
+	var $return_method;
 		
 	// Constructor
-	function tractis_identity($api_key, $notification_callback, $public_verification = "false", $image_button = "") 
+	function tractis_identity($api_key, $notification_callback, $public_verification = "false", $image_button = "", $return_method = "GET")
 	{
 		if (!isset($api_key) || !isset($notification_callback))
 		{
@@ -29,6 +30,7 @@ class tractis_identity
 		$this->notification_callback = $notification_callback;
 		$this->public_verification = $public_verification;
 		$this->image_button = $image_button;
+		$this->return_method = $return_method;
 	}
 		
 	function show_form()
@@ -48,12 +50,14 @@ class tractis_identity
     {
         $params = array();
         $from_auth = true;
+
         foreach ($this->check_params as $getParam) {
-            if (!$_GET[$getParam]) {
+        	$param_to_check = $this->return_method == "POST" ? $_POST[$getParam] : $_GET[$getParam];
+            if (!$param_to_check) {
                 $from_auth = false;
             }
             else {
-                $params[$getParam] = $_GET[$getParam];
+                $params[$getParam] = $param_to_check;
             }
         } 
        
