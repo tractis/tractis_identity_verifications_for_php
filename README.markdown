@@ -1,12 +1,13 @@
-	Overview
-------------------------------------------------------------------------------------------
+Overview
+============
+
 This is a php class + sample webapp to illustrate how Tractis Identity Verifications work on PHP. 
  
 Tractis Identity Verifications php class encapsulates the validation + auth form creation for you
 to perform authentication processes based on electronic certificates using Tractis platform.
  
-	Usage
-------------------------------------------------------------------------------------------
+Usage
+============
  
 You'll find an example implementation in /example directory.
  
@@ -14,7 +15,7 @@ The steps performed by your application are:
 1. Calculate the notification callback
 $notification_callback = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 
-2. tractis_identity object creation, initializing the Tractis api_key, notification callback, and the button used to the form
+2. tractis_identity object creation, initializing the Tractis api_key, notification callback, the button used to the form, and the HTTP return method (GET/POST) configured in the API Key
 
 3. Check if a callback from Tractis if performed and the Authentication Response result
 
@@ -23,13 +24,13 @@ Then you have a user array with the user data.
 To create this API_KEY you must:
 	   1. Sign in at Tractis and go to http://www.tractis.com/identity_verifications.
    	   2. Generate an API Key introducing the url of the site that will call Identity Verification services
-   	   2.b (Optional) A more fine grained configuration about which attributes request and verify could be performed here  
+   	   2.b (Optional) A more fine grained configuration about which attributes request and verify could be performed here
+   	   2.c (Optional) Configure the HTTP return method
 
+License
+============
  
-	License
-------------------------------------------------------------------------------------------
- 
-	The MIT License
+The MIT License
  
 Copyright (c) 2009 Tractis
  
